@@ -7,6 +7,7 @@ public class ShelfEdit extends State {
 
 	@Override
 	public int run() {
+		System.out.println(" In Shelf Edit");
 		long shelfId = sc.getLong("What Shelf to edit? Insert Id");
 		Shelf shelfToEdit = shelfRep.showEntityId(shelfId);
 		
@@ -15,6 +16,9 @@ public class ShelfEdit extends State {
 			removeShelfFromShelvesIds(shelfToEdit);
 			shelfToEdit.setProductId(prodId);
 			addShelfToShelvesIds(shelfToEdit);
+		} else if (prodId == 0) {
+			removeShelfFromShelvesIds(shelfToEdit);
+			shelfToEdit.setProductId(prodId);
 		} else {
 			System.out.println("Product doesn't exist!");
 		}
@@ -31,12 +35,15 @@ public class ShelfEdit extends State {
 	
 	private void removeShelfFromShelvesIds(Shelf shelf) {
 		long productId = shelf.getProductId();
+		if (productId == 0) { return; }
 		Product produto = prodRep.showEntityId(productId);
 		produto.removeShelfId(shelf.getID());
 	}
 	
 	private void addShelfToShelvesIds(Shelf shelf) {
+		System.out.println("kegrwj");
 		long prodId = shelf.getProductId();
+		System.out.println(prodId);
 		Product produto = prodRep.showEntityId(prodId);
 		produto.addShelfId(shelf.getID());
 	}
