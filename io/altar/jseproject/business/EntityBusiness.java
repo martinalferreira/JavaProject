@@ -1,23 +1,37 @@
 package io.altar.jseproject.business;
 
+import java.util.Set;
+
+import io.altar.jseproject.business.interfaces.BusinessInterface;
 import io.altar.jseproject.models.Entity;
 import io.altar.jseproject.repositories.EntityRepository;
 
-public abstract class EntityBusiness <T extends EntityRepository<S>, S extends Entity> {
+public abstract class EntityBusiness <T extends EntityRepository<S>, S extends Entity> implements BusinessInterface<T, S> {
 	
-	public  void addToEntityRepository (S s) {
+	public T get (Long id) {
+		return null;
 		
 	}
 	
-	public void updateEntity (Long id) {
+	public Set<Long> getAllIds() {
+		return null;
 		
 	}
 	
-	public void consultEntity (Long id) {
+	public void add(S entity) {
 		
 	}
 	
-	public void removeFromEntityRepository (Long id) {
+	public void update (S entity) {
+		
+	}
+	
+	public void delete (Long id) {
+		
+	}
+	
+	public boolean isEmpty() {
+		return false;
 		
 	}
 	

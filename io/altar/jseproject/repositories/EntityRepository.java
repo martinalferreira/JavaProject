@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 import io.altar.jseproject.models.Entity;
-import pt.upacademy.Examples.HashMap.Product;
 
 public abstract class EntityRepository <T extends Entity> {
 	
