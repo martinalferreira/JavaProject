@@ -7,7 +7,6 @@ public class ShelfEdit extends State {
 
 	@Override
 	public int run() {
-		System.out.println(" In Shelf Edit");
 		long shelfId = sc.getLong("What Shelf to edit? Insert Id");
 		Shelf shelfToEdit = shelfRep.showEntityId(shelfId);
 		
@@ -41,9 +40,7 @@ public class ShelfEdit extends State {
 	}
 	
 	private void addShelfToShelvesIds(Shelf shelf) {
-		System.out.println("kegrwj");
 		long prodId = shelf.getProductId();
-		System.out.println(prodId);
 		Product produto = prodRep.showEntityId(prodId);
 		produto.addShelfId(shelf.getID());
 	}
