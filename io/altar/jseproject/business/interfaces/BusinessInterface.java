@@ -1,13 +1,16 @@
 package io.altar.jseproject.business.interfaces;
 
+import java.util.Collection;
 import java.util.Set;
 
 import io.altar.jseproject.models.Entity;
 import io.altar.jseproject.repositories.EntityRepository;
 
-public interface BusinessInterface <T extends EntityRepository<S>, S extends Entity> {
+public interface BusinessInterface <S extends Entity> {
 
-	T get (Long id);
+	Collection<S> getAll();
+	
+	S get (Long id);
 	
 	Set<Long> getAllIds();
 	

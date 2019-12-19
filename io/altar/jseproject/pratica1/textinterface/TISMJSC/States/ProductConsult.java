@@ -5,7 +5,7 @@ public class ProductConsult extends State {
 	@Override
 	public int run() {
 		long productId = sc.getLong("What Product to consult? Insert Id");
-		System.out.println(prodRep.showEntityId(productId));
+		System.out.println(prodBus.get(productId));
 		return 1;
 	}
 

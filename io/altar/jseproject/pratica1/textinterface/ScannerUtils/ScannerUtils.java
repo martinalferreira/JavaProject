@@ -1,5 +1,6 @@
 package io.altar.jseproject.pratica1.textinterface.ScannerUtils;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ScannerUtils {
@@ -110,4 +111,24 @@ public class ScannerUtils {
 		} while (!valid);
 		return result;
 	}
+	
+	public Long getValidLong(String msg, List<Long> values) {
+		Long result;
+		boolean valid = false;
+		do {
+			String validString = msg + "(";
+			for (Long i : values) {
+				validString += " " + i;
+			}
+			validString += " )";
+			result = getLong(validString);
+			for (Long i : values) {
+				if (result == i) {
+					valid = true;
+				}
+			}
+		} while (!valid);
+		return result;
+	}
+	
 }

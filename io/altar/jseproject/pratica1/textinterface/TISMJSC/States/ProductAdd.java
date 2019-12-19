@@ -11,7 +11,7 @@ public class ProductAdd extends State {
 		int iva = sc.getValidInt("What Iva?", ivas);
 		float pvp = sc.getFloat("What PVP?");
 		Product newProduct = new Product(discount, iva, pvp);
-		prodRep.addEntity(newProduct);
+		prodBus.add(newProduct);
 		return 1;
 	}
 

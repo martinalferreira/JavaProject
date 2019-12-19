@@ -9,9 +9,9 @@ public class ProductDelete extends State {
 	@Override
 	public int run() {
 		long productId = sc.getLong("What Product to remove? Insert Id");
-		Product produto = prodRep.showEntityId(productId);
+		Product produto = prodBus.get(productId);
 		deleteFromShelf(produto);
-		prodRep.removeEntity(productId);
+		prodBus.delete(productId);
 		System.out.println("Deleted");
 		return 1;
 	}
@@ -20,7 +20,7 @@ public class ProductDelete extends State {
 		Iterator<Long> shelfIdInterator = produto.getShelvesIds().iterator();
 		while (shelfIdInterator.hasNext()) {
 			Long shelfId = shelfIdInterator.next();
-			shelfRep.showEntityId(shelfId).setProductId(0);
+			shelfBus.get(shelfId).setProductId(0);
 		}
 	}
 

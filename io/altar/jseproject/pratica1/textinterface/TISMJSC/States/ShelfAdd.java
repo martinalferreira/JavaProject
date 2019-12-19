@@ -9,7 +9,7 @@ public class ShelfAdd extends State {
 		int capacity = sc.getInt("What Capacity?");
 		float dailyPrice = sc.getFloat("What Daily Price?");
 		Shelf newShelf = new Shelf(capacity, dailyPrice);
-		shelfRep.addEntity(newShelf);
+		shelfBus.add(newShelf);
 		return 1;
 	}
 

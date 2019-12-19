@@ -5,7 +5,7 @@ public class ShelfConsult extends State {
 	@Override
 	public int run() {
 		long shelfId = sc.getLong("What Shelf to consult? Insert Id");
-		System.out.println(shelfRep.showEntityId(shelfId));
+		System.out.println(shelfBus.get(shelfId));
 		return 1;
 	}
 

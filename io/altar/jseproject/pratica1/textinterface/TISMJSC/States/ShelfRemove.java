@@ -10,17 +10,19 @@ public class ShelfRemove extends State {
 	@Override
 	public int run() {
 		long shelfId = sc.getLong("What Shelf to remove? Insert Id");
-		removeShelfFromShelvesIds(shelfId);
-		shelfRep.removeEntity(shelfId);
+		Shelf shelfToEdit = shelfBus.get(shelfId);
+		shelfBus.updateProductId(shelfToEdit, 0L);
+//		removeShelfFromShelvesIds(shelfId);
+		shelfBus.delete(shelfId);
 		System.out.println("Deleted");
 		return 1;
 	}
 	
-	private void removeShelfFromShelvesIds(Long shelfId) {
-		Shelf prateleira = shelfRep.showEntityId(shelfId);
-		long productId = prateleira.getProductId();
-		Product produto = prodRep.showEntityId(productId);
-		produto.removeShelfId(shelfId);
-	}
+//	private void removeShelfFromShelvesIds(Long shelfId) {
+//		Shelf prateleira = shelfBus.get(shelfId);
+//		long productId = prateleira.getProductId();
+//		Product produto = prodBus.get(productId);
+//		produto.removeShelfId(shelfId);
+//	}
 
 }
