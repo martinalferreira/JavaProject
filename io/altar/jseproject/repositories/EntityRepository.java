@@ -49,11 +49,11 @@ public abstract class EntityRepository <T extends Entity> implements BusinessInt
 	}
 	
 	public boolean isEmpty() {
-		return false;
+		return (myDataBase.size() == 0) ? true : false;
 	}
 	
 	public Set<Long> getAllIds() {
-		return null;
+		return myDataBase.keySet();
 	}
 	
 	

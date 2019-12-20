@@ -3,7 +3,6 @@ package io.altar.jseproject.business;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 import io.altar.jseproject.business.interfaces.ProductInterface;
 import io.altar.jseproject.models.Product;
@@ -11,27 +10,30 @@ import io.altar.jseproject.models.Shelf;
 import io.altar.jseproject.repositories.ProductRepository;
 
 public class ProductBusiness extends EntityBusiness<ProductRepository,Product> implements ProductInterface {
-	private ProductRepository prodRep = ProductRepository.getInstance();
 	private static final ShelfBusiness shelfBus = new ShelfBusiness();
+	
+	public ProductBusiness () {
+		this.repository = ProductRepository.getInstance();
+	}
 	
 	@Override
 	public Product get(Long id) {
-		return prodRep.get(id);
+		return repository.get(id);
 	}
 
 	@Override
 	public void add(Product entity) {
-		prodRep.add(entity);
+		repository.add(entity);
 	}
 
 	@Override
 	public void update(Product entity) {
-		prodRep.update(entity);
+		repository.update(entity);
 	}
 
 	@Override
 	public void delete(Long id) {
-		prodRep.delete(id);
+		repository.delete(id);
 	}
 	
 	@Override
@@ -51,18 +53,6 @@ public class ProductBusiness extends EntityBusiness<ProductRepository,Product> i
 			} 
 		}
 		return shelvesIds;
-	}
-
-	@Override
-	public Set<Long> getAllIds() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override

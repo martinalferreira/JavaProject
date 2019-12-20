@@ -1,7 +1,6 @@
 package io.altar.jseproject.business;
 
 import java.util.Collection;
-import java.util.Set;
 
 import io.altar.jseproject.business.interfaces.ShelfInterface;
 import io.altar.jseproject.models.Product;
@@ -9,32 +8,35 @@ import io.altar.jseproject.models.Shelf;
 import io.altar.jseproject.repositories.ShelfRepository;
 
 public class ShelfBusiness extends EntityBusiness<ShelfRepository,Shelf> implements ShelfInterface {
-	ShelfRepository shelfRep = ShelfRepository.getInstance();
 	private static final ProductBusiness prodBus = new ProductBusiness();
+	
+	public ShelfBusiness () {
+		this.repository = ShelfRepository.getInstance();
+	}
 	
 	@Override
 	public Shelf get(Long id) {
-		return shelfRep.get(id);
+		return repository.get(id);
 	}
 
 	@Override
 	public void add(Shelf entity) {
-		shelfRep.add(entity);	
+		repository.add(entity);	
 	}
 
 	@Override
 	public void update(Shelf entity) {
-		shelfRep.update(entity);
+		repository.update(entity);
 	}
 
 	@Override
 	public void delete(Long id) {
-		shelfRep.delete(id);
+		repository.delete(id);
 	}
 
 	@Override
 	public Collection<Shelf> getAll() {
-		return shelfRep.getAll();
+		return repository.getAll();
 	}
 
 	@Override
@@ -62,16 +64,6 @@ public class ShelfBusiness extends EntityBusiness<ShelfRepository,Shelf> impleme
 		long prodId = shelf.getProductId();
 		Product produto = prodBus.get(prodId);
 		produto.addShelfId(shelf.getID());
-	}
-
-	@Override
-	public Set<Long> getAllIds() {
-		return null;
-	}
-	
-	@Override
-	public boolean isEmpty() {
-		return false;
 	}
 
 }
