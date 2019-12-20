@@ -1,6 +1,5 @@
 package io.altar.jseproject.pratica1.textinterface.TISMJSC.States;
 
-import io.altar.jseproject.models.Product;
 import io.altar.jseproject.models.Shelf;
 
 public class ShelfEdit extends State {

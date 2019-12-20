@@ -69,15 +69,15 @@ public class TextInterface {
 		int capacity = sc.getInt("What Capacity?");
 		float dailyPrice = sc.getFloat("What Daily Price?");
 		Shelf newShelf = new Shelf(capacity, dailyPrice);
-		shelfRep.addEntity(newShelf);
+		shelfRep.add(newShelf);
 	}
 	
 	private void editShelfHelper() {
 		long shelfId = sc.getLong("What Shelf to edit? Insert Id");
-		Shelf shelfToEdit = shelfRep.showEntityId(shelfId);
+		Shelf shelfToEdit = shelfRep.get(shelfId);
 		
 		long prodId = sc.getLong("What Product? Insert Id");
-		if (prodRep.showEntityId(prodId) != null) {
+		if (prodRep.get(prodId) != null) {
 			shelfToEdit.setProductId(prodId);
 		} else {
 			System.out.println("Product doesn't exist!");
@@ -89,17 +89,17 @@ public class TextInterface {
 		float dailyPrice = sc.getFloat("Edit Daily Price?");
 		shelfToEdit.setDailyPrice(dailyPrice);
 		
-		shelfRep.editEntity(shelfToEdit);	
+		shelfRep.update(shelfToEdit);	
 	}
 		
 	private void consultShelfHelper() {
 		long shelfId = sc.getLong("What Shelf to consult? Insert Id");
-		System.out.println(shelfRep.showEntityId(shelfId));
+		System.out.println(shelfRep.get(shelfId));
 	}
 	
 	private void removeShelfHelper() {
 		long shelfId = sc.getLong("What Shelf to remove? Insert Id");
-		shelfRep.removeEntity(shelfId);
+		shelfRep.delete(shelfId);
 		System.out.println("Deleted");
 	}
 	
@@ -139,12 +139,12 @@ public class TextInterface {
 		int iva = sc.getValidInt("What Iva?", ivas);
 		float pvp = sc.getFloat("What PVP?");
 		Product newProduct = new Product(discount, iva, pvp);
-		prodRep.addEntity(newProduct);
+		prodRep.add(newProduct);
 	}
 	
 	private void editProductHelper() {
 		long productId = sc.getLong("What Product to edit? Insert Id");
-		Product productToEdit = prodRep.showEntityId(productId);
+		Product productToEdit = prodRep.get(productId);
 		
 		editShelvesIds (productToEdit);
 		
@@ -154,14 +154,14 @@ public class TextInterface {
 		
 		editPvp (productToEdit);
 		
-		prodRep.editEntity(productToEdit);
+		prodRep.update(productToEdit);
 	}
 	
 //	editProductHelper Helpers
 	
 	private void editShelvesIds (Product product) {
 		long shelfId = sc.getLong("What Shelf? Insert Id");
-		if (shelfRep.showEntityId(shelfId) != null) {
+		if (shelfRep.get(shelfId) != null) {
 			List<Long> shelvesIds = new ArrayList<Long>();
 			shelvesIds.add(shelfId);
 			product.setShelvesIds(shelvesIds);
@@ -190,14 +190,14 @@ public class TextInterface {
 	
 	private void consultProductHelper() {
 		long productId = sc.getLong("What Product to consult? Insert Id");
-		System.out.println(prodRep.showEntityId(productId));
+		System.out.println(prodRep.get(productId));
 	}
 	
 	private void deleteProductHelper() {
 		long productId = sc.getLong("What Product to remove? Insert Id");
-		Product produto = prodRep.showEntityId(productId);
+		Product produto = prodRep.get(productId);
 		deleteFromShelf(produto);
-		prodRep.removeEntity(productId);
+		prodRep.delete(productId);
 		System.out.println("Deleted");
 	}
 	
@@ -205,7 +205,7 @@ public class TextInterface {
 		Iterator<Long> shelfIdInterator = produto.getShelvesIds().iterator();
 		while (shelfIdInterator.hasNext()) {
 			Long shelfId = shelfIdInterator.next();
-			shelfRep.showEntityId(shelfId).setProductId(0);
+			shelfRep.get(shelfId).setProductId(0);
 		}
 	}
 

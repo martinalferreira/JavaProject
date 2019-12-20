@@ -16,42 +16,24 @@ public class ProductBusiness extends EntityBusiness<ProductRepository,Product> i
 	
 	@Override
 	public Product get(Long id) {
-		return prodRep.showEntityId(id);
-	}
-
-	@Override
-	public Set<Long> getAllIds() {
-		
-		return null;
+		return prodRep.get(id);
 	}
 
 	@Override
 	public void add(Product entity) {
-		prodRep.addEntity(entity);
+		prodRep.add(entity);
 	}
 
 	@Override
 	public void update(Product entity) {
-		prodRep.editEntity(entity);
+		prodRep.update(entity);
 	}
 
 	@Override
 	public void delete(Long id) {
-		prodRep.removeEntity(id);
+		prodRep.delete(id);
 	}
-
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public Collection<Product> getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	@Override
 	public void updateShelvesIds(Product product, List<Long> updatedShelves) {
 		System.out.println(updatedShelves);
@@ -69,6 +51,24 @@ public class ProductBusiness extends EntityBusiness<ProductRepository,Product> i
 			} 
 		}
 		return shelvesIds;
+	}
+
+	@Override
+	public Set<Long> getAllIds() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Collection<Product> getAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

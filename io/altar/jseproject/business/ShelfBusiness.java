@@ -14,34 +14,22 @@ public class ShelfBusiness extends EntityBusiness<ShelfRepository,Shelf> impleme
 	
 	@Override
 	public Shelf get(Long id) {
-		return shelfRep.showEntityId(id);
-	}
-
-	@Override
-	public Set<Long> getAllIds() {
-		// TODO Auto-generated method stub
-		return null;
+		return shelfRep.get(id);
 	}
 
 	@Override
 	public void add(Shelf entity) {
-		shelfRep.addEntity(entity);	
+		shelfRep.add(entity);	
 	}
 
 	@Override
 	public void update(Shelf entity) {
-		shelfRep.editEntity(entity);
+		shelfRep.update(entity);
 	}
 
 	@Override
 	public void delete(Long id) {
-		shelfRep.removeEntity(id);
-	}
-
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		shelfRep.delete(id);
 	}
 
 	@Override
@@ -74,6 +62,16 @@ public class ShelfBusiness extends EntityBusiness<ShelfRepository,Shelf> impleme
 		long prodId = shelf.getProductId();
 		Product produto = prodBus.get(prodId);
 		produto.addShelfId(shelf.getID());
+	}
+
+	@Override
+	public Set<Long> getAllIds() {
+		return null;
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		return false;
 	}
 
 }

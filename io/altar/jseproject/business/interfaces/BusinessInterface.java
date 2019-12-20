@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.Set;
 
 import io.altar.jseproject.models.Entity;
-import io.altar.jseproject.repositories.EntityRepository;
 
 public interface BusinessInterface <S extends Entity> {
 
@@ -21,7 +20,4 @@ public interface BusinessInterface <S extends Entity> {
 	void delete (Long id);
 	
 	boolean isEmpty();
-	
-	
-	
 }

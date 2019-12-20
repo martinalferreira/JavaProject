@@ -4,10 +4,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
+import io.altar.jseproject.business.interfaces.BusinessInterface;
 import io.altar.jseproject.models.Entity;
 
-public abstract class EntityRepository <T extends Entity> {
+public abstract class EntityRepository <T extends Entity> implements BusinessInterface<T> {
 	
 	Map<Long,T> myDataBase = new HashMap<Long, T>();
 	private Long biggestId = 0L;
@@ -16,11 +18,10 @@ public abstract class EntityRepository <T extends Entity> {
 		return ++biggestId;
 	}
 	
-	public Long addEntity(T t) {
+	public void add(T t) {
 		Long id = getNextId();
 		t.setID(id);
 		myDataBase.put(id, t);
-		return id;
 	}
 	
 	public Collection<T> getAll() {
@@ -35,15 +36,25 @@ public abstract class EntityRepository <T extends Entity> {
 		}
 	}
 			
-	public T showEntityId(Long id) {
+	public T get(Long id) {
 		return myDataBase.get(id);
 	}
 	
-	public void editEntity(T t) {
+	public void update(T t) {
 		myDataBase.replace(t.getID(), t);
 	}
 	
-	public void removeEntity (Long id) {
-		myDataBase.remove(id, showEntityId(id));
+	public void delete (Long id) {
+		myDataBase.remove(id, get(id));
 	}
+	
+	public boolean isEmpty() {
+		return false;
+	}
+	
+	public Set<Long> getAllIds() {
+		return null;
+	}
+	
+	
 }

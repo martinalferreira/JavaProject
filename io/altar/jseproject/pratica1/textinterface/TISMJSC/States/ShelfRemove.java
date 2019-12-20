@@ -1,8 +1,5 @@
 package io.altar.jseproject.pratica1.textinterface.TISMJSC.States;
 
-import java.util.List;
-
-import io.altar.jseproject.models.Product;
 import io.altar.jseproject.models.Shelf;
 
 public class ShelfRemove extends State {
